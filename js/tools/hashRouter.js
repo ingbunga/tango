@@ -1,38 +1,83 @@
 
 export class Router{
-    #nowUrlArray = [];
-    #screenDom;
-    #notFoundFunc = null;
-    nowUrl = ''
+    nowUrl = ''         // 현재 url
+    #nowUrlArray = [''];  // 현재 url ( 리스트 형식으로 )
+    #rootDom = null;    // 루트 dom
+    #notFoundFunc = null;   // 404 함수
+    
     #urlMap = {
-        // [url: string] : [trigger: fucntion]
+        /*
+            [url: string] : {
+                trigger: fucntion,
+                html: string,
+                exact: boolean
+            }
+        */ 
     }
+    #bindSave = [];
+    #bindElements = [];
     constructor(){
-        this.nowurl = location.hash.slice(2, location.hash.length);
-        this.#route();
+        this.push(location.hash.slice(2, location.hash.length))
+    }
+    refrash(){
+        this.push(this.nowUrl);
+    }
+    #reCallBind(){
+        for(let i = 0; i < this.#bindSave.length; i++){
+            console.log(i)
+            const set = this.#bindSave[i];
+            this.bindHtml(
+                set.className,
+                set.attrName,
+                set.eventName,
+                true
+            );
+        }
     }
     // 프로퍼티를 사용해 라우팅을 해주는 내부함수
     #route(){
         location.hash = '!'+this.nowUrl;
 
         let routed = false;
+        let domChanged = false;
         for(let i in this.#urlMap){
+            const fin = i.length
             if(
-                i.slice(0,this.nowUrl.length) === this.nowUrl &&
-                i.length === this.nowUrl.length || i[this.nowUrl.length+1] === '/'
+                this.nowUrl.slice(0, fin) === i.slice(0, fin) || i[fin] === '/'
+                //                                               뒤에  /sungus /sungu 같은거 방지
             ){
-                console.error('yeah')
-                this.#urlMap[i]();
+                const routeinfo = this.#urlMap[i];
+                if(routeinfo.exact && i !== this.nowUrl) continue;
+                
+                if(routeinfo.html !== null && this.#rootDom){
+                    if(!domChanged){
+                        this.#rootDom.innerHTML = '';
+                    }
+                    domChanged = true;
+                    this.#rootDom.innerHTML += routeinfo.html;
+                }
+                if(routeinfo.func !== null){
+                    routeinfo.func();
+                }
                 routed = true;
             }
+        }
+        if(domChanged){
+            this.#reCallBind();
         }
         if(routed === false && this.#notFoundFunc !== null){
             this.#notFoundFunc();
         }
     }
     // 라우팅 등록함수
-    on(url, func){
-        this.#urlMap[url] = func;
+
+    // on(url, func = null, html = null, exact = false){
+    on({url, func = null, html = null, exact = false}){
+        this.#urlMap[url] = {
+            func,
+            html,
+            exact
+        }
     }
     // url을 변경하는 함수
     push(url){
@@ -42,7 +87,9 @@ export class Router{
                 this.#nowUrlArray = [''];
             }
             else if(i == '..'){
-                this.#nowUrlArray.pop();
+                if(this.#nowUrlArray.length !== 1){
+                    this.#nowUrlArray.pop();
+                }
             }
             else if(i == '.');
             else{
@@ -56,14 +103,31 @@ export class Router{
     set404(func){
         this.#notFoundFunc = func;
     }
-    bindHtml(className, attrName = 'href'){
-        const elements = document.querySelectorAll(`.${className}`);
-
-        for(let i = 0; i < elements.length; i++){
-            elements[i].addEventListener('click', (e) => {
-                e.preventDefault();
-                router.push(elements[i].getAttribute(attrName));
-            }) 
+    // html에 바인딩 하는 함수
+    bindHtml(className, attrName = 'href', eventName = 'click', recall=false){
+        if(!recall){
+            this.#bindSave.push({
+                className,
+                attrName,
+                eventName
+            })
         }
+        const elements = document.querySelectorAll(`.${className}`);
+        for(let i = 0; i < this.#bindElements.length; i++){
+            this.#bindElements[i][0].removeEventListener(eventName, this.#bindElements[i][1])
+        }
+        this.#bindElements = [];
+        for(let i = 0; i < elements.length; i++){
+            const listner = (e) => {
+                e.preventDefault();
+                this.push(elements[i].getAttribute(attrName));
+            }
+            this.#bindElements.push([elements[i], listner]);
+            elements[i].addEventListener(eventName, listner);
+        }
+    }
+    // 스크린 돔 설정
+    setRootDom(dom){
+        this.#rootDom = dom;
     }
 }
