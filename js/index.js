@@ -4,7 +4,11 @@ const router = new Router();
 
 router.on('/sungu', ()=>{
     alert('welcome to sungu')
-}, '<h1>welcome to sungu</h1>');
+}, '<h1>welcome to sungu</h1>', true);
+
+router.on('/sungu/fuck', ()=>{
+    alert('welcome to sungu and fuck')
+}, '<h1>welcome to sungu and fuck</h1>');
 
 router.on('/fuck', ()=>{
     alert('welcome to fuck')

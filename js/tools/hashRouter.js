@@ -6,10 +6,19 @@ export class Router{
     #notFoundFunc = null;   // 404 함수
     
     #urlMap = {
-        // [url: string] : [trigger: fucntion]
+        /*
+            [url: string] : {
+                trigger: fucntion,
+                html: string,
+                exact: boolean
+            }
+        */ 
     }
     #htmlMap = {
         // [url: string] : [html : string]
+    }
+    #exactMap = {
+        
     }
     constructor(){
         this.push(location.hash.slice(2, location.hash.length))
@@ -24,19 +33,24 @@ export class Router{
         let routed = false;
         let domChanged = false;
         for(let i in this.#urlMap){
+            const fin = i.length
             if(
-                i.slice(0,this.nowUrl.length) === this.nowUrl &&
-                i.length === this.nowUrl.length || i[this.nowUrl.length+1] === '/'
+                this.nowUrl.slice(0, fin) === i.slice(0, fin) || i[fin] === '/'
+                //                                               뒤에  /sungus /sungu 같은거 방지
             ){
-                if(this.#htmlMap[i] && this.#rootDom){
+                const routeinfo = this.#urlMap[i];
+                if(routeinfo.exact && i !== this.nowUrl) continue;
+                
+                if(routeinfo.html !== null && this.#rootDom){
                     if(!domChanged){
                         this.#rootDom.innerHTML = '';
                     }
                     domChanged = true;
-                    this.#rootDom.innerHTML += this.#htmlMap[i];
+                    this.#rootDom.innerHTML += routeinfo.html;
                 }
-                console.error('yeah')
-                this.#urlMap[i]();
+                if(routeinfo.func !== null){
+                    routeinfo.func();
+                }
                 routed = true;
             }
         }
@@ -45,10 +59,11 @@ export class Router{
         }
     }
     // 라우팅 등록함수
-    on(url, func, html = null){
-        this.#urlMap[url] = func;
-        if(html){
-            this.#htmlMap[url] = html;
+    on(url, func = null, html = null, exact = false){
+        this.#urlMap[url] = {
+            func,
+            html,
+            exact
         }
     }
     // url을 변경하는 함수
