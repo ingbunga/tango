@@ -59,7 +59,9 @@ export class Router{
         }
     }
     // 라우팅 등록함수
-    on(url, func = null, html = null, exact = false){
+
+    // on(url, func = null, html = null, exact = false){
+    on({url, func = null, html = null, exact = false}){
         this.#urlMap[url] = {
             func,
             html,

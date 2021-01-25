@@ -2,17 +2,30 @@ import { Router } from './tools/hashRouter.js';
 
 const router = new Router();
 
-router.on('/sungu', ()=>{
-    alert('welcome to sungu')
-}, '<h1>welcome to sungu</h1>', true);
+router.on({
+    url: '/sungu',
+    func: () => {
+        alert('welcome to sungu')
+    },
+    html: '<h1>welcome to sungu</h1>',
+    exact: true
+})
 
-router.on('/sungu/fuck', ()=>{
-    alert('welcome to sungu and fuck')
-}, '<h1>welcome to sungu and fuck</h1>');
+router.on({
+    url: '/fuck',
+    func: () => {
+        alert('welcome to fuck')
+    },
+    html: '<h1>welcome to fuck</h1>',
+})
 
-router.on('/fuck', ()=>{
-    alert('welcome to fuck')
-},'<h1>welcome to fuck</h1>')
+router.on({
+    url: '/sungu/fuck',
+    func: () => {
+        alert('welcome to sungu and fuck')
+    },
+    html: '<h1>welcome to sungu and fuck</h1>',
+})
 
 router.setRootDom(document.getElementById('screen'))
 router.bindHtml('route');
