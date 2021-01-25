@@ -7,7 +7,7 @@ router.on({
     func: () => {
         alert('welcome to sungu')
     },
-    html: '<h1>welcome to sungu</h1>',
+    html: '<h1>welcome to sungu</h1><h2 class="route" href="./fuck">gotosex</h2>',
     exact: true
 })
 

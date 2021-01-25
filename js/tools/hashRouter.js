@@ -14,17 +14,25 @@ export class Router{
             }
         */ 
     }
-    #htmlMap = {
-        // [url: string] : [html : string]
-    }
-    #exactMap = {
-        
-    }
+    #bindSave = [];
+    #bindElements = [];
     constructor(){
         this.push(location.hash.slice(2, location.hash.length))
     }
     refrash(){
         this.push(this.nowUrl);
+    }
+    #reCallBind(){
+        for(let i = 0; i < this.#bindSave.length; i++){
+            console.log(i)
+            const set = this.#bindSave[i];
+            this.bindHtml(
+                set.className,
+                set.attrName,
+                set.eventName,
+                true
+            );
+        }
     }
     // 프로퍼티를 사용해 라우팅을 해주는 내부함수
     #route(){
@@ -54,6 +62,9 @@ export class Router{
                 routed = true;
             }
         }
+        if(domChanged){
+            this.#reCallBind();
+        }
         if(routed === false && this.#notFoundFunc !== null){
             this.#notFoundFunc();
         }
@@ -76,7 +87,9 @@ export class Router{
                 this.#nowUrlArray = [''];
             }
             else if(i == '..'){
-                this.#nowUrlArray.pop();
+                if(this.#nowUrlArray.length !== 1){
+                    this.#nowUrlArray.pop();
+                }
             }
             else if(i == '.');
             else{
@@ -91,14 +104,26 @@ export class Router{
         this.#notFoundFunc = func;
     }
     // html에 바인딩 하는 함수
-    bindHtml(className, attrName = 'href', eventName = 'click'){
+    bindHtml(className, attrName = 'href', eventName = 'click', recall=false){
+        if(!recall){
+            this.#bindSave.push({
+                className,
+                attrName,
+                eventName
+            })
+        }
         const elements = document.querySelectorAll(`.${className}`);
-
+        for(let i = 0; i < this.#bindElements.length; i++){
+            this.#bindElements[i][0].removeEventListener(eventName, this.#bindElements[i][1])
+        }
+        this.#bindElements = [];
         for(let i = 0; i < elements.length; i++){
-            elements[i].addEventListener(eventName, (e) => {
+            const listner = (e) => {
                 e.preventDefault();
                 this.push(elements[i].getAttribute(attrName));
-            })
+            }
+            this.#bindElements.push([elements[i], listner]);
+            elements[i].addEventListener(eventName, listner);
         }
     }
     // 스크린 돔 설정
