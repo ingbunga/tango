@@ -1,3 +1,13 @@
+const setInnerHTML = function (elm, html) {
+    elm.innerHTML = html;
+    Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+        const newScript = document.createElement("script");
+        Array.from(oldScript.attributes)
+            .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+}
 
 export default class Router{
     nowUrl = ''         // 현재 url
@@ -56,7 +66,7 @@ export default class Router{
                         this.#rootDom.innerHTML = '';
                     }
                     domChanged = true;
-                    this.#rootDom.innerHTML += routeinfo.html;
+                    setInnerHTML(this.#rootDom, this.#rootDom.innerHTML+ routeinfo.html);
                 }
                 if(routeinfo.func !== null){
                     routeinfo.func();
