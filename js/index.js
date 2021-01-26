@@ -7,6 +7,7 @@ import swcontrol from './swcontroll.js';
 import afterRInstall from './html/remember/index.js';
 import afterR_VInstall from './html/remember/view.js';
 import afterTInstall from './html/timer/index.js';
+import afterAInstall from './html/add.js';
 
 export const router = new Router();
 const EZ = new EZstorage();
@@ -32,6 +33,7 @@ const EZ = new EZstorage();
 
     router.on({
         url: '/add',
+        func: () => {afterAInstall(EZ)},
         html: await LoadHtml('/add.html'),
         exact: true
     })
