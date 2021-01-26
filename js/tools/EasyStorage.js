@@ -3,19 +3,35 @@ let onchangeList = []
 
 export default class EZstorage{
     #storage = {}   // Rroxy
-    observe = {
-        set: (obj, prop, value) => {
-            obj[prop] = value;
-            this.#save();
-            return true;
-        }
-    }
     constructor(){
-        this.#connect();
+        var observe = {
+            get: (target, key)=> {
+                if (typeof target[key] === 'object' && target[key] !== null) {
+                    return new Proxy(target[key], observe)
+                } else {
+                    return target[key];
+                }
+            },
+            set: (obj, prop, value) => {
+                obj[prop] = value;
+                this.#save(obj);
+                return true;
+            }
+        }
+        if(localStorage['EZ']){
+            target = JSON.parse(localStorage['EZ']);
+        }
+        else{
+            target = {}
+        }
+        this.storage = new Proxy(target, observe);
     }
     #save(){
         window.localStorage.setItem('EZ', JSON.stringify(this.storage));
         this.changed();
+    }
+    onChange(func){
+        onchangeList.push(func);
     }
     #connect(){
         if(localStorage['EZ']){
@@ -24,10 +40,6 @@ export default class EZstorage{
         else{
             target = {}
         }
-        this.storage = new Proxy(target, this.observe);
-    }
-    onChange(func){
-        onchangeList.push(func);
     }
     changed(){
         for(let i = 0; i < onchangeList.length; i++){

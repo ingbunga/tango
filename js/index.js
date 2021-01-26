@@ -48,25 +48,38 @@ export const router = new Router();
         exact: true
     })
 
+    router.on({
+        url: '/timer',
+        html: await LoadHtml('/timer.html'),
+    })
+
     router.setRootDom(document.getElementById('screen'))
     router.bindHtml('route');
     router.refrash();
 
-    // const EZ = new EZstorage();
-    // const Ez2 = new EZstorage();
+    const EZ = new EZstorage();
+    const Ez2 = new EZstorage();
     
-    // EZ.onChange(() => {
-    //     console.log('changed!!!');
-    // })
+    EZ.onChange(() => {
+        console.log('changed!!!');
+    })
     
     // console.log(EZ.storage);
+    if(EZ.storage.noteList === undefined){
+        EZ.storage.noteList = [];
+    }
     
-    // EZ.storage.noteList = [];
-    // console.log(EZ.storage);
-    // console.log(Ez2.storage);
-    // Ez2.storage.y = 1;
-    // EZ.storage.noteList.push('ayy');
+    console.log(EZ.storage);
+    
+    // for(let i = 0; i< 10; i++){
+    //     EZ.storage.noteList.push({
+    //         name: '안녕'+i,
+    //         detail: '좆까',
+    //         wordList: ['sex'],
+    //         meanList: ['성교'],
+    //     });
 
-    // console.log(EZ.storage);
-    // console.log(Ez2.storage);
+    // }
+
+    console.log(EZ.storage);
 })()

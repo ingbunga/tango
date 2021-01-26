@@ -47,16 +47,29 @@
         </nav> 
 
         <h1 class="title"> Tango에 오신 것을 환영합니다! </h1>
-        <p class="main_text">Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
-            단어를 등록해, 효율적으로 외워보세요!
-        </p>
+        
+        <div>
+            <div>
+                <span id="postTestMin">00</span><!-- 분 -->
+                <span>:</span>
+                <span id="postTestSec">00</span><!--초-->
+                <span>.</span>
+                <span id="postTestMilisec">00</span><!--밀리초-->
+            </div>
+            <div>
+                <ul id="testRecordList"></ul><!--중간 기록할 리스트-->
+            </div>
+            <div>
+                <button type="button" id="testStartBtn">START</button><!--시작/재시작/기록 버튼-->
+                <button type="button" id="testStopBtn">RESET</button><!--스톱 버튼-->
+            </div>
+        </div>
     
         <footer class="footer">
             <p>뭔가 아래에 들어가야 할 것 같은 글</p>
         </footer>
     </div>
-
-    <script type="module" src="./js/index.js"></script>
+    <script></script>
     <script src="./js/html/sidenav.js"></script>
     <script src="./js/html/timer.js"></script>
 </body>
