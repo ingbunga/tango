@@ -1,14 +1,15 @@
-const voca_form = document.getElementById('form');
-voca_form.onsubmit = submit;
-function submit(event){
-    alert("테스트!");
-    //event.preventDefault();
-}
+(function(){
+    const voca_form = document.getElementById('form');
+
+    voca_form.onsubmit = submit;
+
+    function submit(event){
+        alert("테스트!");
+        //event.preventDefault();
+    }
+    
+})()
 let count = 1;
-
-//const voca = document.getElementsByClassName('voca');
-//const mean = document.getElementsByClassName('mean');
-
 
 function add(){
     var newDIV = document.createElement("div");
@@ -31,4 +32,12 @@ function remove(p){
     console.log(count);
 }
 
+function title_text(){
+    let titlet = document.getElementById('title').value;
+    console.log(titlet);
+}
 
+function detail_text(){
+    let detailt = document.getElementById('detail').value;
+    console.log(detailt);
+}
