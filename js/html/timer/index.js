@@ -1,8 +1,8 @@
 var alreadyRun = false;
+var timerStart
 export default function(EZ){
     let stTime = 0
     let endTime = 0
-    let timerStart
 
     let min
     let sec
@@ -15,12 +15,13 @@ export default function(EZ){
     if(EZ.storage.Timer == undefined){
         EZ.storage.Timer = {
             stTime: 0,
-            endTime: 0
+            endTime: 0,
+            run: false
         }
     }
     else{
         stTime = EZ.storage.Timer.stTime;
-        stTime = EZ.storage.Timer.endTime;
+        endTime = EZ.storage.Timer.endTime;
     }
 
     startBtn.addEventListener('click', function () {
@@ -38,17 +39,20 @@ export default function(EZ){
             return false
         }
         this.innerText = 'RECORD'
+        console.error('1')
+        console.error(Date.now());
         if (!stTime) {
-            stTime = Date.now() // 최초 START
+            stTime = new Date().getTime() // 최초 START
             console.warn(stTime);
             EZ.storage.Timer.stTime = stTime;
-            // alreadyRun = true;
         } else {
+            console.log(stTime)
             stopBtn.innerText = 'STOP'
-            // stTime += (Date.now() - endTime) // RESTART
+            if(alreadyRun || EZ.storage.Timer.run === false){
+                stTime += (Date.now() - endTime) // RESTART
+            }
             console.warn(stTime);
             EZ.storage.Timer.stTime = stTime;
-            // alreadyRun = true;
         }
         if(!alreadyRun){
             timerStart = setInterval(function () {
@@ -60,7 +64,9 @@ export default function(EZ){
                 document.getElementById('postTestSec').innerText = sec
                 document.getElementById('postTestMilisec').innerText = milisec
             }, 1)
+            alreadyRun = true;
         }
+        EZ.storage.Timer.run = true;
     })
 
     stopBtn.addEventListener('click', function () {
@@ -74,6 +80,8 @@ export default function(EZ){
                 alreadyRun = false;
             } else { // RESET
                 stTime = 0
+                EZ.storage.Timer.stTime = 0;
+                EZ.storage.Timer.stTime = 0;
                 min = 0
                 sec = 0
                 milisec = 0
@@ -84,8 +92,8 @@ export default function(EZ){
                 this.innerText = 'STOP'
                 timerStart = null
                 recordList.innerHTML = ''
-                EZ.storage.Timer = undefined;
             }
+            EZ.storage.Timer.run = false;
         }
     })
 
@@ -93,8 +101,17 @@ export default function(EZ){
         return (num < 10 ? '0' + num : '' + num)
     }
 
-    console.error(EZ.storage.Timer);
-    if(EZ.storage.Timer !== undefined){
+    console.error(EZ.storage.Timer.stTime);
+    if(EZ.storage.Timer.stTime !== 0 && EZ.storage.Timer.run){
         startBtn.click();
+    }
+    else{
+        var nowTime = new Date(endTime - stTime)
+        min = addZero(nowTime.getMinutes())
+        sec = addZero(nowTime.getSeconds())
+        milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+        document.getElementById('postTestMin').innerText = min
+        document.getElementById('postTestSec').innerText = sec
+        document.getElementById('postTestMilisec').innerText = milisec
     }
 }
