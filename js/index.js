@@ -4,6 +4,7 @@ import LoadHtml from './tools/LoadHtml.js';
 
 import sunguHtml from '../html/sungu.html.js';
 import indexHtml from '../html/index.html.js';
+import addHtml from '../html/add.html.js';
 
 (async () => {
 
@@ -29,6 +30,12 @@ import indexHtml from '../html/index.html.js';
     router.on({
         url: '/sungu/fuck',
         html: '<h1>welcome to sungu and fuck</h1><h2 class="route" href="../">back</h2><h2 class="route" href="../../fuck">fuck</h2>',
+    })
+
+    router.on({
+        url: '/add',
+        html: await LoadHtml('/add.html'),
+        exact: true
     })
 
     router.setRootDom(document.getElementById('screen'))
