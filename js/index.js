@@ -1,4 +1,5 @@
-import { Router } from './tools/hashRouter.js';
+import Router from './tools/hashRouter.js';
+import EZstorage from './tools/EasyStorage.js';
 
 import sunguHtml from '../html/sungu.html.js';
 import indexHtml from '../html/index.html.js';
@@ -30,3 +31,14 @@ router.on({
 router.setRootDom(document.getElementById('screen'))
 router.bindHtml('route');
 router.refrash();
+
+const EZ = new EZstorage();
+const Ez2 = new EZstorage();
+
+Ez2.onChange(() => {
+    console.log('changed!!!');
+})
+
+EZ.storage.x = 1;
+console.log(EZ.storage);
+console.log(Ez2.storage);

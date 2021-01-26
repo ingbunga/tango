@@ -1,5 +1,5 @@
 
-export class Router{
+export default class Router{
     nowUrl = ''         // 현재 url
     #nowUrlArray = [''];  // 현재 url ( 리스트 형식으로 )
     #rootDom = null;    // 루트 dom
@@ -86,7 +86,6 @@ export class Router{
         let urlList = url.split('/');
         for(let i = 0; i < urlList.length; i++){
             const key = urlList[i];
-            console.log(i)
             if(key === '' && i === 0){
                 this.#nowUrlArray = [''];
             }
