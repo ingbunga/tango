@@ -28,30 +28,37 @@
         <div id="mysidenav" class="mysidenav">
             <a href="#" class="closebtn" onclick='closeNav()'>X</a>
             <a href="">유저</a>
-            <a href="">팀</a>
-            <a href="">통계</a>
             <a class="route" href="/add">단어 추가하기</a>
+            <a href="">단어 외우기</a>
+            <a href="">통계</a>
+            <a href="">팀</a> 
         </div>
 
         <nav>
             <span class="logo">Tango</span>
             <div class = "icon">
-                <button class="material-icons md-36 route" href="/timer">
+                <span class="material-icons md-36 route" href="/timer">
                     access_alarm
-                </button>
+                </span>
                 <span class="material-icons md-36" onclick="openNav()">
                     person
                 </span>
             </div>
         </nav> 
+
+        <h1 class="title"> Tango에 오신 것을 환영합니다! </h1>
+        <p class="main_text">
+            Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
+            단어를 등록해, 효율적으로 외워보세요!
+        </p>
     
-        <footer>
+        <footer class="footer">
             <p>뭔가 아래에 들어가야 할 것 같은 글</p>
         </footer>
     </div>
 
-    <script type="module" src="./js/index.js"></script>
-    <script src="./js/sidenav.js"></script>
-    <script src="./js/timer.js"></script>
+    <script type="module" src="./js/html/index.js"></script>
+    <script src="./js/html/sidenav.js"></script>
+    <script src="./js/html/timer.js"></script>
 </body>
 </html>

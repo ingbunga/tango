@@ -34,6 +34,8 @@ export default () => (`
             <a href="">단어 추가하기</a>
         </div>
 
+        <h1> Tango에 오신 것을 환영합니다! </h1>
+
         <nav>
             <span class="logo">Tango</span>
             <div class = "icon">
@@ -46,7 +48,6 @@ export default () => (`
             </div>
         </nav> 
         
-        <button class="route" href="/sungu">성우로 가는길</button>
 
         <footer>
             <p>뭔가 아래에 들어가야 할 것 같은 글</p>

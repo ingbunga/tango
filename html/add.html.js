@@ -38,9 +38,9 @@ export default () => (`
         <nav>
             <span class="logo">Tango</span>
             <div class = "icon">
-                <button class="material-icons md-36 route" href="/timer">
+                <span class="material-icons md-36 route" href="/timer">
                     access_alarm
-                </button>
+                </span>
                 <span class="material-icons md-36" onclick="openNav()">
                     person
                 </span>
@@ -48,18 +48,20 @@ export default () => (`
         </nav> 
         <!-- add 부분 -->
         <h1>새로운 단어장 만들기</h1>
-        <input type="text" name="title" placeholder="제목"><br><br>
-        <input type="text" name="detail" placeholder="설명"><br><br>
+        <input type="text" name="title" placeholder="제목" required><br><br>
+        <input type="text" name="detail" placeholder="설명" required>
+        <button class= "make" type="submit">만들기</button><br>
+        <br><br>
+        
 
         <div id="voca_add">
-            <input type="text" name="voca" placeholder="단어">
-            <input type="text" name="mean" placeholder="뜻">
+            <input type="text" name="voca" placeholder="단어" required>
+            <input type="text" name="mean" placeholder="뜻" required>
             <button onclick="add()">추가하기</button>
             <button onclick="remove(this)">제거하기</button>
         </div>
 
-
-
+        <input type="submit" value="만들기">
 
 
         <footer>
