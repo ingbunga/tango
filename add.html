@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./css/sidenav.css">
     <link rel="stylesheet" href="./css/timer.css">
     <link rel="stylesheet" href="./css/voca_add.css">
-    <link rel="stylesheet" href="css/switch.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>jungtong pj</title>
     <style type="text/css">
@@ -50,27 +49,21 @@
 
         <!-- add 부분 -->
         <h1>새로운 단어장 만들기</h1>
-        <input type="text" name="title" placeholder="제목" required><br><br>
-        <input type="text" name="detail" placeholder="설명" required>
-        <button class= "make" type="submit">만들기</button><br>
-        <br><br>
-        
-
-        <div id="voca_add">
-            <input type="text" name="voca" placeholder="단어" required>
-            <input type="text" name="mean" placeholder="뜻" required>
-            <button onclick="add()">추가하기</button>
-            <button onclick="remove(this)">제거하기</button>
-        </div>
-
-        <footer class="footer">
-            <p>뭔가 아래에 들어가야 할 것 같은 글</p>
-        </footer>
+        <form class="voca_form" id="form">
+            <input type="text" name="title" id="title" placeholder="제목" required><br><br>
+            <input type="text" name="detail" id="detail" placeholder="설명" required>
+            <button class= "make" type="submit">만들기</button><br><br><br>
+            <div class="voca_add">
+                <input type="text" name="voca" class="voca" placeholder="단어" required>
+                <input type="text" name="mean" class="mean" placeholder="뜻" required>
+                <input type="button" value="추가하기" onclick="add()" class="voca_input">
+                <input type="button" value="제거하기" onclick="remove(this)">
+            </div>
+        </form> 
     </div>
 
     <script type="module" src="./js/index.js"></script>
     <script src="./js/html/sidenav.js"></script>
     <script src="./js/html/add.js"></script>
-    <script src="./js/html/delete.js"></script>
 </body>
 </html>
