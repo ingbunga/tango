@@ -1,32 +1,44 @@
-import { Router } from './tools/hashRouter.js';
+import Router from './tools/hashRouter.js';
+import EZstorage from './tools/EasyStorage.js';
+
+import sunguHtml from '../html/sungu.html.js';
+import indexHtml from '../html/index.html.js';
 
 const router = new Router();
 
 router.on({
+    url: '',
+    html: indexHtml(),
+    exact: true,
+})
+
+router.on({
     url: '/sungu',
-    func: () => {
-        alert('welcome to sungu')
-    },
-    html: '<h1>welcome to sungu</h1><h2 class="route" href="./fuck">gotosex</h2>',
+    html: sunguHtml(),
     exact: true
 })
 
 router.on({
     url: '/fuck',
-    func: () => {
-        alert('welcome to fuck')
-    },
     html: '<h1>welcome to fuck</h1>',
 })
 
 router.on({
     url: '/sungu/fuck',
-    func: () => {
-        alert('welcome to sungu and fuck')
-    },
-    html: '<h1>welcome to sungu and fuck</h1>',
+    html: '<h1>welcome to sungu and fuck</h1><h2 class="route" href="../">back</h2><h2 class="route" href="../../fuck">fuck</h2>',
 })
 
 router.setRootDom(document.getElementById('screen'))
 router.bindHtml('route');
 router.refrash();
+
+const EZ = new EZstorage();
+const Ez2 = new EZstorage();
+
+EZ.onChange(() => {
+    console.log('changed!!!');
+})
+
+Ez2.storage.x = 1;
+console.log(EZ.storage);
+console.log(Ez2.storage);

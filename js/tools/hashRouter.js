@@ -1,5 +1,5 @@
 
-export class Router{
+export default class Router{
     nowUrl = ''         // 현재 url
     #nowUrlArray = [''];  // 현재 url ( 리스트 형식으로 )
     #rootDom = null;    // 루트 dom
@@ -18,13 +18,15 @@ export class Router{
     #bindElements = [];
     constructor(){
         this.push(location.hash.slice(2, location.hash.length))
+        window.onhashchange = () => {
+            this.push(location.hash.slice(2, location.hash.length))
+        }
     }
     refrash(){
         this.push(this.nowUrl);
     }
     #reCallBind(){
         for(let i = 0; i < this.#bindSave.length; i++){
-            console.log(i)
             const set = this.#bindSave[i];
             this.bindHtml(
                 set.className,
@@ -82,18 +84,20 @@ export class Router{
     // url을 변경하는 함수
     push(url){
         let urlList = url.split('/');
-        for(let i of urlList){
-            if(i == ''){
+        for(let i = 0; i < urlList.length; i++){
+            const key = urlList[i];
+            if(key === '' && i === 0){
                 this.#nowUrlArray = [''];
             }
-            else if(i == '..'){
+            else if(key === '' && i !== 0) continue;
+            else if(key == '..'){
                 if(this.#nowUrlArray.length !== 1){
                     this.#nowUrlArray.pop();
                 }
             }
-            else if(i == '.');
+            else if(key == '.') continue;
             else{
-                this.#nowUrlArray.push(i);
+                this.#nowUrlArray.push(key);
             }
         }
         this.nowUrl = this.#nowUrlArray.join('/');
