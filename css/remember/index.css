@@ -1,0 +1,36 @@
+#noteList{
+    display: flex;
+    justify-content: center;
+    
+    flex-wrap: wrap;
+}
+
+.notebox{
+    width: 400px;
+    display: flex;
+
+    align-items: center;
+
+    border: 1px gray solid;
+    border-radius: 5px;
+    box-shadow: rgb(211, 211, 211) 0px 0px 5px;
+    margin: 10px;
+    padding: 10px;
+
+    transition: all 500ms;
+}
+
+.notebox:hover{
+    cursor: pointer;
+
+    background-color: #dbdbdb;
+}
+
+.notebox > span{
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+.noteRight > h2{
+    margin: 0px
+}

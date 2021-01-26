@@ -52,6 +52,9 @@ export default class Router{
 
         let routed = false;
         let domChanged = false;
+        const temp = this.nowUrl;
+        this.nowUrl = this.nowUrl.split('?')[0]
+        console.warn(3, this.nowUrl)
         for(let i in this.#urlMap){
             const fin = i.length
             if(
@@ -74,6 +77,7 @@ export default class Router{
                 routed = true;
             }
         }
+        this.nowUrl = temp;
         if(domChanged){
             this.#reCallBind();
         }
@@ -94,6 +98,8 @@ export default class Router{
     // url을 변경하는 함수
     push(url){
         let urlList = url.split('/');
+        console.warn(1,urlList)
+        
         for(let i = 0; i < urlList.length; i++){
             const key = urlList[i];
             if(key === '' && i === 0){
@@ -111,6 +117,7 @@ export default class Router{
             }
         }
         this.nowUrl = this.#nowUrlArray.join('/');
+        console.warn(2,this.nowUrl)
         this.#route();
     }
     // 404함수를 설정하는 함수
@@ -139,6 +146,7 @@ export default class Router{
             this.#bindElements.push([elements[i], listner]);
             elements[i].addEventListener(eventName, listner);
         }
+        console.warn(this.#bindElements);
     }
     // 스크린 돔 설정
     setRootDom(dom){
