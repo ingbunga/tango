@@ -2,11 +2,14 @@ import Router from './tools/hashRouter.js';
 import EZstorage from './tools/EasyStorage.js';
 import LoadHtml from './tools/LoadHtml.js';
 
+import swcontrol from './swcontroll.js';
+
 import sunguHtml from '../html/sungu.html.js';
 import indexHtml from '../html/index.html.js';
 import addHtml from '../html/add.html.js';
 
 (async () => {
+    swcontrol();
 
     const router = new Router();
 
@@ -42,16 +45,16 @@ import addHtml from '../html/add.html.js';
     router.bindHtml('route');
     router.refrash();
 
-    const EZ = new EZstorage();
-    const Ez2 = new EZstorage();
+    // const EZ = new EZstorage();
+    // const Ez2 = new EZstorage();
 
-    EZ.onChange(() => {
-        console.log('changed!!!');
-    })
+    // EZ.onChange(() => {
+    //     console.log('changed!!!');
+    // })
 
-    console.log(EZ.storage);
-    Ez2.storage.y = 1;
-    console.log(EZ.storage.y);
-    console.log(Ez2.storage.y);
+    // console.log(EZ.storage);
+    // Ez2.storage.y = 1;
+    // console.log(EZ.storage.y);
+    // console.log(Ez2.storage.y);
 
 })()
