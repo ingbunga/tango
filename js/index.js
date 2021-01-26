@@ -44,7 +44,7 @@ export const router = new Router();
     router.on({
         url: '/remember/view',
         func: () => {afterR_VInstall(router)},
-        html: await LoadHtml('/view.html'),
+        html: await LoadHtml('/html/remember/view.html'),
         exact: true
     })
 
