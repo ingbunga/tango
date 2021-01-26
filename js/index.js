@@ -58,7 +58,6 @@ export const router = new Router();
     router.refrash();
 
     const EZ = new EZstorage();
-    const Ez2 = new EZstorage();
     
     EZ.onChange(() => {
         console.log('changed!!!');
@@ -70,7 +69,7 @@ export const router = new Router();
     }
     
     console.log(EZ.storage);
-    
+
     // for(let i = 0; i< 10; i++){
     //     EZ.storage.noteList.push({
     //         name: '안녕'+i,
@@ -78,7 +77,6 @@ export const router = new Router();
     //         wordList: ['sex'],
     //         meanList: ['성교'],
     //     });
-
     // }
 
     console.log(EZ.storage);
