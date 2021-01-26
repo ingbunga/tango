@@ -9,6 +9,14 @@ nav{
     background-color: #374bb9;
 }
 
+.title{
+    text-align: center;
+}
+
+.main_text{
+    text-align: center;
+}
+
 nav > span{
     font-size: 3em;
     color: white;
@@ -23,16 +31,15 @@ nav > span:hover{
     cursor: pointer;
 }
 
-footer { 
-    background-color: #e8eaf6;
-    text-align: center;
-    border-top: 1px solid gray;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 15px 0;
-}
+.footer {
+    width:100%;
+    height:40px;
+    position:absolute;
+    bottom:0;
+    background:#5eaeff;
+   text-align: center;
+   color: white;
+ }
 
 .icon{
     font-size: 3em;
@@ -46,6 +53,6 @@ footer {
 }
 
 input{
-    width: 30%;
+    width: 24%;
     height: 1.5%;
 }
