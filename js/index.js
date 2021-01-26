@@ -43,8 +43,8 @@ export const router = new Router();
 
     router.on({
         url: '/remember/view',
-        func: afterR_VInstall,
-        html: await LoadHtml('/view.html'),
+        func: () => {afterR_VInstall(router)},
+        html: await LoadHtml('/html/remember/view.html'),
         exact: true
     })
 
@@ -52,21 +52,21 @@ export const router = new Router();
     router.bindHtml('route');
     router.refrash();
 
-    const EZ = new EZstorage();
-    const Ez2 = new EZstorage();
+    // const EZ = new EZstorage();
+    // const Ez2 = new EZstorage();
     
-    EZ.onChange(() => {
-        console.log('changed!!!');
-    })
+    // EZ.onChange(() => {
+    //     console.log('changed!!!');
+    // })
     
-    console.log(EZ.storage);
+    // console.log(EZ.storage);
     
-    EZ.storage.noteList = [];
-    console.log(EZ.storage);
-    console.log(Ez2.storage);
-    Ez2.storage.y = 1;
-    EZ.storage.noteList.push('ayy');
+    // EZ.storage.noteList = [];
+    // console.log(EZ.storage);
+    // console.log(Ez2.storage);
+    // Ez2.storage.y = 1;
+    // EZ.storage.noteList.push('ayy');
 
-    console.log(EZ.storage);
-    console.log(Ez2.storage);
+    // console.log(EZ.storage);
+    // console.log(Ez2.storage);
 })()

@@ -2,7 +2,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/remember/index.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/sidenav.css">
     <link rel="stylesheet" href="./css/timer.css">
@@ -25,17 +24,18 @@
 </head>
 <body>
     <div id="screen">
+
         <div id="mysidenav" class="mysidenav">
             <a href="#" class="closebtn" onclick='closeNav()'>X</a>
             <a href="">유저</a>
             <a class="route" href="/add">단어 추가하기</a>
-            <a href="">단어 외우기</a>
+            <a class="route" href="/remember">단어 외우기</a>
             <a href="">통계</a>
             <a href="">팀</a> 
         </div>
 
         <nav>
-            <span class="logo route" href="/">Tango</span>
+            <span class="logo">Tango</span>
             <div class = "icon">
                 <span class="material-icons md-36 route" href="/timer">
                     access_alarm
@@ -46,21 +46,18 @@
             </div>
         </nav> 
 
-        <h1 class="title"> 단어장을 선택하세요!</h1>
-
-        <div id="noteList">
-            <div class="notebox route" href="./notename">
-                <span class="material-icons">
-                    description
-                </span>
-                <div class="noteRight">
-                    <h2>단어장 이름</h2>
-                    <span>detail</span>
-                </div>
-            </div>
-        </div>
+        <h1 class="title"> Tango에 오신 것을 환영합니다! </h1>
+        <p class="main_text">Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
+            단어를 등록해, 효율적으로 외워보세요!
+        </p>
+    
+        <footer class="footer">
+            <p>뭔가 아래에 들어가야 할 것 같은 글</p>
+        </footer>
     </div>
-    <!-- <script type="module" src="./js/html/remember/index.js"></script> -->
+
+    <script type="module" src="./js/index.js"></script>
+    <script src="./js/html/sidenav.js"></script>
     <script src="./js/html/timer.js"></script>
 </body>
 </html>
