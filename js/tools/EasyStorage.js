@@ -1,64 +1,33 @@
 let target = {}
-let observe = {
-    set: function(obj, prop, value){
-        obj[prop] = value;
-        window.localStorage.setItem('EZ', JSON.stringify(obj));
-        return true;
-    }
-}
+let onchangeList = []
 
 export default class EZstorage{
     #storage = {}   // Rroxy
-    #onchangeList = []
+    observe = {
+        set: (obj, prop, value) => {
+            obj[prop] = value;
+            window.localStorage.setItem('EZ', JSON.stringify(obj));
+            this.changed();
+            return true;
+        }
+    }
     constructor(){
+        this.storage = this.storage !== undefined? this.storage: [];
         if(localStorage['EZ']){
             target = JSON.parse(localStorage['EZ']);
         }
         else{
             target = {}
         }
-        this.storage = new Proxy(target, observe);
-        window.addEventListener('storage', this.#changed)
+        window.addEventListener('storage', this.changed)
+        this.storage = new Proxy(target, this.observe);
     }
     onChange(func){
-        this.#onchangeList.push(func);
-        console.log(this.#onchangeList)
+        onchangeList.push(func);
     }
-    #changed(){
-        this.#onchangeList.push(func);
-        for(let func of this.#onchangeList){
-            func();
+    changed(){
+        for(let i = 0; i < onchangeList.length; i++){
+            onchangeList[i]();
         }
     }
 }
-
-// export default class EasyStorage{
-//     #proxyList = [];
-//     #onChangeList = [];
-    // observe = {
-    //     set: function(obj, prop, value){
-    //         this.#changed(obj, prop, value);
-    //         obj[prop] = value;
-    //         window.localStorage = JSON.stringify(obj);
-    //     }
-    // }
-//     static #target = {}
-//     static storage = new Proxy(this.#target, this.observe);
-//     constructor(){
-//         if(localStorage['EZ']){
-//             this.storage = JSON.parse(localStorage['EZ']);
-//         }
-//         window.addEventListener('storage', this.#changed);
-//     }
-//     onChange(func){
-//         this.#onChangeList.push(func);
-//     }
-//     #changed(obj, prop, value){
-//         for(i = 0; i < this.#proxyList; i++){
-//             this.#onChangeList[prop] = value;
-//         }
-//         for(i = 0; i < this.#onChangeList; i++){
-//             this.#onChangeList[i]();
-//         }
-//     }
-// }

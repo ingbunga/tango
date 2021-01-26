@@ -35,10 +35,10 @@ router.refrash();
 const EZ = new EZstorage();
 const Ez2 = new EZstorage();
 
-Ez2.onChange(() => {
+EZ.onChange(() => {
     console.log('changed!!!');
 })
 
-EZ.storage.x = 1;
+Ez2.storage.x = 1;
 console.log(EZ.storage);
 console.log(Ez2.storage);
