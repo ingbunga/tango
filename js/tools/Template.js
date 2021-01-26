@@ -1,7 +1,8 @@
 export default ( html, data ) => {
-    const dataReg = /\{{2}\ *.*\ *\}{2}/g
-    return html.replace(dataReg, (name)=>{
-        console.log(name)
-        return data[name]
+    const dataReg = /{{\s*([A-z]+)\s*}}/g
+    const exactFind = /{{\s*(.+)\s*}}/
+    return html.replace(dataReg, (raw)=>{
+        const name = raw.match(exactFind)[1].trim();
+        return data[name];
     })
 }
