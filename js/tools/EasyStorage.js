@@ -6,20 +6,24 @@ export default class EZstorage{
     observe = {
         set: (obj, prop, value) => {
             obj[prop] = value;
-            window.localStorage.setItem('EZ', JSON.stringify(obj));
-            this.changed();
+            this.#save();
             return true;
         }
     }
     constructor(){
-        this.storage = this.storage !== undefined? this.storage: [];
+        this.#connect();
+    }
+    #save(){
+        window.localStorage.setItem('EZ', JSON.stringify(this.storage));
+        this.changed();
+    }
+    #connect(){
         if(localStorage['EZ']){
             target = JSON.parse(localStorage['EZ']);
         }
         else{
             target = {}
         }
-        window.addEventListener('storage', this.changed)
         this.storage = new Proxy(target, this.observe);
     }
     onChange(func){
@@ -29,5 +33,11 @@ export default class EZstorage{
         for(let i = 0; i < onchangeList.length; i++){
             onchangeList[i]();
         }
+    }
+    clear(){
+        window.localStorage.setItem('EZ', '{}');
+        target = {};
+        this.#connect();
+        this.changed();
     }
 }
