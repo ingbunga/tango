@@ -1,30 +1,30 @@
 import { Router } from './tools/hashRouter.js';
 
+import sunguHtml from '../html/sungu.html.js';
+import indexHtml from '../html/index.html.js';
+
 const router = new Router();
 
 router.on({
+    url: '',
+    html: indexHtml(),
+    exact: true,
+})
+
+router.on({
     url: '/sungu',
-    func: () => {
-        alert('welcome to sungu')
-    },
-    html: '<h1>welcome to sungu</h1><h2 class="route" href="./fuck">gotosex</h2>',
+    html: sunguHtml(),
     exact: true
 })
 
 router.on({
     url: '/fuck',
-    func: () => {
-        alert('welcome to fuck')
-    },
     html: '<h1>welcome to fuck</h1>',
 })
 
 router.on({
     url: '/sungu/fuck',
-    func: () => {
-        alert('welcome to sungu and fuck')
-    },
-    html: '<h1>welcome to sungu and fuck</h1>',
+    html: '<h1>welcome to sungu and fuck</h1><h2 class="route" href="../">back</h2><h2 class="route" href="../../fuck">fuck</h2>',
 })
 
 router.setRootDom(document.getElementById('screen'))
