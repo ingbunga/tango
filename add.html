@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./css/sidenav.css">
     <link rel="stylesheet" href="./css/timer.css">
     <link rel="stylesheet" href="./css/voca_add.css">
-    <link rel="stylesheet" href="css/switch.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>jungtong pj</title>
     <style type="text/css">
@@ -50,12 +49,12 @@
 
         <!-- add 부분 -->
         <h1>새로운 단어장 만들기</h1>
-        <form class="voca_form" id="form" onsubmit="submit();">
-            <input type="text" name="title" id="title" placeholder="제목" onchange='title_text()'required><br><br>
-            <input type="text" name="detail" id="detail" placeholder="설명" onchange='detail_text()' required>
+        <form class="voca_form" id="form">
+            <input type="text" name="title" id="title" placeholder="제목" required><br><br>
+            <input type="text" name="detail" id="detail" placeholder="설명" required>
             <button class= "make" type="submit">만들기</button><br><br><br>
             <div class="voca_add">
-                <input type="text" name="voca" class="voca" placeholder="단어" onchange="voca()" required>
+                <input type="text" name="voca" class="voca" placeholder="단어" required>
                 <input type="text" name="mean" class="mean" placeholder="뜻" required>
                 <input type="button" value="추가하기" onclick="add()" class="voca_input">
                 <input type="button" value="제거하기" onclick="remove(this)">
