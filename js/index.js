@@ -6,8 +6,10 @@ import swcontrol from './swcontroll.js';
 
 import afterRInstall from './html/remember/index.js';
 import afterR_VInstall from './html/remember/view.js';
+import afterTInstall from './html/timer/index.js';
 
 export const router = new Router();
+const EZ = new EZstorage();
 
 (async () => {
     swcontrol();
@@ -50,14 +52,13 @@ export const router = new Router();
 
     router.on({
         url: '/timer',
+        func: ()=>{afterTInstall(EZ)},
         html: await LoadHtml('/timer.html'),
     })
 
     router.setRootDom(document.getElementById('screen'))
     router.bindHtml('route');
     router.refrash();
-
-    const EZ = new EZstorage();
     
     EZ.onChange(() => {
         console.log('changed!!!');
@@ -67,17 +68,6 @@ export const router = new Router();
     if(EZ.storage.noteList === undefined){
         EZ.storage.noteList = [];
     }
-    
-    console.log(EZ.storage);
-
-    // for(let i = 0; i< 10; i++){
-    //     EZ.storage.noteList.push({
-    //         name: '안녕'+i,
-    //         detail: '좆까',
-    //         wordList: ['sex'],
-    //         meanList: ['성교'],
-    //     });
-    // }
 
     console.log(EZ.storage);
 })()

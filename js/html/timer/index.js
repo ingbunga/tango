@@ -1,4 +1,5 @@
-(function(){
+var alreadyRun = false;
+export default function(EZ){
     let stTime = 0
     let endTime = 0
     let timerStart
@@ -9,33 +10,91 @@
 
     const startBtn = document.getElementById('testStartBtn')
     const stopBtn = document.getElementById('testStopBtn')
+    const recordList = document.getElementById('testRecordList')
+
+    if(EZ.storage.Timer == undefined){
+        EZ.storage.Timer = {
+            stTime: 0,
+            endTime: 0
+        }
+    }
+    else{
+        stTime = EZ.storage.Timer.stTime;
+        stTime = EZ.storage.Timer.endTime;
+    }
 
     startBtn.addEventListener('click', function () {
-        if (!stTime) {
-            stTime = Date.now() // 처음 시작할 때
-        } else {
-            stTime += (Date.now() - endTime) // 재시작할 때
+        // RECORD
+        if (this.innerText == 'RECORD' && milisec) {
+            console.log(min, sec, milisec)
+            var li = document.createElement('li')
+            li.style.color = "#fff"
+            li.innerText = min + ' : ' + sec + ' : ' + milisec
+            if (!recordList.firstChild) {
+                recordList.append(li)
+            } else {
+                recordList.insertBefore(li, recordList.firstChild)
+            }
+            return false
         }
-
-        timerStart = setInterval(function () {
-            const nowTime = new Date(Date.now() - stTime)
-            min = addZero(nowTime.getMinutes())
-            sec = addZero(nowTime.getSeconds())
-            milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
-            document.getElementById('postTestMin').innerText = min
-            document.getElementById('postTestSec').innerText = sec
-            document.getElementById('postTestMilisec').innerText = milisec
-        }, 1)
+        this.innerText = 'RECORD'
+        if (!stTime) {
+            stTime = Date.now() // 최초 START
+            console.warn(stTime);
+            EZ.storage.Timer.stTime = stTime;
+            // alreadyRun = true;
+        } else {
+            stopBtn.innerText = 'STOP'
+            // stTime += (Date.now() - endTime) // RESTART
+            console.warn(stTime);
+            EZ.storage.Timer.stTime = stTime;
+            // alreadyRun = true;
+        }
+        if(!alreadyRun){
+            timerStart = setInterval(function () {
+                var nowTime = new Date(Date.now() - stTime)
+                min = addZero(nowTime.getMinutes())
+                sec = addZero(nowTime.getSeconds())
+                milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+                document.getElementById('postTestMin').innerText = min
+                document.getElementById('postTestSec').innerText = sec
+                document.getElementById('postTestMilisec').innerText = milisec
+            }, 1)
+        }
     })
 
     stopBtn.addEventListener('click', function () {
         if (timerStart) {
-            clearInterval(timerStart)
-            endTime = Date.now() // STOP시점의 시간 저장
+            clearInterval(timerStart) // STOP
+            if (this.innerText == 'STOP') {
+                endTime = Date.now()
+                EZ.storage.Timer.endTime = endTime
+                this.innerText = 'RESET'
+                startBtn.innerText = 'RESTART'
+                alreadyRun = false;
+            } else { // RESET
+                stTime = 0
+                min = 0
+                sec = 0
+                milisec = 0
+                document.getElementById('postTestMin').innerText = '00'
+                document.getElementById('postTestSec').innerText = '00'
+                document.getElementById('postTestMilisec').innerText = '00'
+                startBtn.innerText = 'START'
+                this.innerText = 'STOP'
+                timerStart = null
+                recordList.innerHTML = ''
+                EZ.storage.Timer = undefined;
+            }
         }
     })
 
     function addZero(num) {
         return (num < 10 ? '0' + num : '' + num)
     }
-})();
+
+    console.error(EZ.storage.Timer);
+    if(EZ.storage.Timer !== undefined){
+        startBtn.click();
+    }
+}
