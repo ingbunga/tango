@@ -1,5 +1,6 @@
 var alreadyRun = false;
 var timerStart
+
 export default function(EZ){
     let stTime = 0
     let endTime = 0

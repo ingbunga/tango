@@ -44,6 +44,7 @@ export default function(router){
             const noteDom = noteDoms[i];
             noteDom.addEventListener('click', (e)=>{
                 EZ.storage.noteList.splice(i,1);
+                console.log(EZ.storage.noteList);
                 getList();
             })
         }

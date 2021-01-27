@@ -1,4 +1,8 @@
-export default function(EZ){
+import EZstorage from '../tools/EasyStorage.js';
+
+export default function(){
+    const EZ = new EZstorage();
+    
     const voca_form = document.getElementById('form');
     const file = document.getElementById('A_file');
 
@@ -64,6 +68,10 @@ export default function(EZ){
             meanList: meant
         })
     }
+
+    EZ.onChange(()=>{
+        console.debug(EZ.storage.noteList);
+    })
 
 
     function voca_text(){
