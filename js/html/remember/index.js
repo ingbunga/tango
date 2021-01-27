@@ -1,3 +1,5 @@
+import EZstorage from "../../tools/EasyStorage.js";
+
 export default function(){
     function noteBox({
         id = 0,
@@ -15,22 +17,10 @@ export default function(){
             </div>
         </div>`
     }
+
+    const EZ = new EZstorage();
     
-    
-    const saveList = [
-        {
-            name: '노트1',
-            detail: '응애노트',
-            wordList: ['sex', 'jerkoff'],
-            meanList: ['성행위하다', '자위하다']
-        },
-        {
-            name: '일본여성케이크',
-            detail: '스시녀 사랑한다',
-            wordList: ['sex', 'jerkoff'],
-            meanList: ['성행위하다', '자위하다']
-        }
-    ]
+    const saveList = EZ.storage.noteList
     
     const noteListDOM = document.getElementById('noteList');
     noteListDOM.innerHTML = '';

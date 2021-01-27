@@ -1,3 +1,6 @@
+import QueryParser from '../../tools/unpackQuery.js';
+import EZstorage from '../../tools/EasyStorage.js'
+
 function randPopAndDel(arr, arr2){
     const num = Math.floor(Math.random() * arr.length);
     const temp = arr[num];
@@ -6,9 +9,11 @@ function randPopAndDel(arr, arr2){
     arr2.splice(num, 1);
     return [temp, temp2];
 }
+
 function randPop(a) {
     return a[Math.floor(Math.random() * a.length)];
 }
+
 function randInt(min, max){
     Math.floor(Math.random() * (max-min))+min
 }
@@ -25,13 +30,18 @@ export default function(router){
 
     let correctCnt = 0;
     let wrongCnt = 0;
+
+    const EZ = new EZstorage();
+    const query = QueryParser(location.href);
     
-    const save = {
-        name: '일본여성케이크',
-        detail: '스시녀 사랑한다',
-        wordList: ['sex', 'jerkoff'],
-        meanList: ['성행위하다', '자위하다']
-    }
+    const save = EZ.storage.noteList[parseInt(query.id)];
+    // {
+    //     name: '일본여성케이크',
+    //     detail: '스시녀 사랑한다',
+    //     wordList: ['sex', 'jerkoff'],
+    //     meanList: ['성행위하다', '자위하다']
+    // }
+
     function init(){
         wrongCnt = 0;
         correctCnt = 0;
