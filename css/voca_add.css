@@ -3,10 +3,11 @@ h1{
 }
 
 .voca_add{ /* div 박스 */
-    display: inline-block;
-    height: 3%;
-    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
     border:1px solid;
+    height: 5%;
+    width: 40%;
     margin-left: 4%;
 }
 
