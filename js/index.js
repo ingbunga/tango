@@ -56,7 +56,7 @@ const EZ = new EZstorage();
 
     router.on({
         url: '/timer',
-        func: ()=>{afterTInstall(EZ)},
+        func: ()=>{afterTInstall()},
         html: await LoadHtml('/timer.html'),
     })
 

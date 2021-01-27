@@ -1,7 +1,11 @@
+import EZStorage from '../../tools/EasyStorage.js';
+const EZ = new EZStorage();
+
 var alreadyRun = false;
 var timerStart
 
-export default function(EZ){
+export default function(){
+
     let stTime = 0
     let endTime = 0
 
@@ -17,7 +21,7 @@ export default function(EZ){
         console.debug(EZ.storage.Timer)
     })
 
-    if(EZ.storage.Timer == undefined){
+    if(EZ.storage.Timer === undefined){
         EZ.storage.Timer = {
             stTime: 0,
             endTime: 0,
@@ -52,7 +56,7 @@ export default function(EZ){
             EZ.storage.Timer.stTime = stTime;
         } else {
             stopBtn.innerText = 'STOP'
-            if(alreadyRun || EZ.storage.Timer.run === false){
+            if(alreadyRun && EZ.storage.Timer.run === false){
                 stTime += (Date.now() - endTime) // RESTART
             }
             EZ.storage.Timer.stTime = stTime;
