@@ -12,6 +12,10 @@ export default function(EZ){
     const stopBtn = document.getElementById('testStopBtn')
     const recordList = document.getElementById('testRecordList')
 
+    EZ.onChange(()=>{
+        console.debug(EZ.storage.Timer)
+    })
+
     if(EZ.storage.Timer == undefined){
         EZ.storage.Timer = {
             stTime: 0,
@@ -33,7 +37,6 @@ export default function(EZ){
         // RECORD
         if (this.innerText == 'RECORD' && milisec) {
             var li = document.createElement('li')
-            li.style.color = "#fff"
             li.innerText = min + ' : ' + sec + ' : ' + milisec
             if (!recordList.firstChild) {
                 recordList.append(li)
@@ -56,7 +59,7 @@ export default function(EZ){
         if(!alreadyRun){
             timerStart = setInterval(function () {
                 var nowTime = new Date(Date.now() - stTime)
-                console.debug(nowTime);
+                console.debug(nowTime.getTime());
                 min = addZero(Math.floor(nowTime / (1000 * 60 * 60)));
                 sec = addZero(Math.floor(nowTime / (1000 * 60))% 60);
                 milisec = addZero(Math.floor(nowTime / 1000)% 60);
@@ -65,15 +68,10 @@ export default function(EZ){
                     document.getElementById('postTestSec').innerText = sec
                     document.getElementById('postTestMilisec').innerText = milisec
                 }
-                else{
-                    clearInterval(timerStart);
-                    EZ.storage.Timer.run = false;
-                    alreadyRun = false;
-                }
             }, 1000)
             alreadyRun = true;
+            EZ.storage.Timer.run = true;
         }
-        EZ.storage.Timer.run = true;
     })
 
     stopBtn.addEventListener('click', function () {
@@ -88,7 +86,7 @@ export default function(EZ){
             } else { // RESET
                 stTime = 0
                 EZ.storage.Timer.stTime = 0;
-                EZ.storage.Timer.stTime = 0;
+                EZ.storage.Timer.endTime = 0;
                 min = 0
                 sec = 0
                 milisec = 0
@@ -108,12 +106,17 @@ export default function(EZ){
         return (num < 10 ? '0' + num : '' + num)
     }
 
+    var nowTime = Date.now() - stTime;
     if(EZ.storage.Timer.stTime !== 0 && EZ.storage.Timer.run){
-        var nowTime = Date.now() - stTime;
+        console.debug('you are runing')
         startBtn.click();
     }
+    else if(!EZ.storage.Timer.run && EZ.storage.Timer.stTime !== 0){
+        console.debug('you may stoped')
+        nowTime = (endTime - stTime)
+    }
     else{
-        var nowTime = new Date(endTime - stTime)
+        var nowTime = 0;
     }
     min = addZero(Math.floor(nowTime / (1000 * 60 * 60)));
     sec = addZero(Math.floor(nowTime / (1000 * 60))% 60);

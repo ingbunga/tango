@@ -1,10 +1,10 @@
-#in_screen{
+#A_in_screen{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#H_bodyMenu{
+#A_bodyMenu{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -15,22 +15,34 @@
     animation-name: slidein-back;
 }
 
-.H_bodyItem{
+/* 과거기록 */
+#A_recentList{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+}
+#A_recentList > span{
+    font-size: 50px;
+}
+
+/* recent */
+.A_bodyItem{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     
     width: 500px;
-    padding: 100px;
+    margin: 10px;
     border: 1px solid;
     border-radius: 7px;
     margin: 10px;
     overflow: hidden;
 
-    font-size: 50px;
-    font-weight: 100;
+    font-size: 20px;
 
-    box-shadow: rgb(209, 209, 209) 0px 0px 15px;
+    box-shadow: rgb(209, 209, 209) 0px 0px 8px;
 
     transition: all 500ms;
 
@@ -38,37 +50,34 @@
     animation-name: slidein;
 }
 
-.H_bodyItem > span{
-    font-size: 100px;
+.A_bodyItem > span{
+    font-size: 20px;
+    font-weight: bold;
 
     animation-duration: 500ms;
     animation-name: slidein-span;
 }
 
-.H_bodyItem:hover{
-    cursor: pointer;
-    background-color: #dbdbdb;
-}
 
 @keyframes slidein {
     from {
-        font-size: 10px;
+        font-size: 4px;
         width: 100px;
     }
   
     to {
-        font-size: 50px;
+        font-size: 20px;
         width: 500px;
     }
 }
 
 @keyframes slidein-span {
     from {
-        font-size: 20px;
+        font-size: 4px;
     }
   
     to {
-        font-size: 100px;
+        font-size: 20px;
     }
 }
 

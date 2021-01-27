@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/sidenav.css">
     <link rel="stylesheet" href="./css/timer.css">
-    <link rel="stylesheet" href="./css/home/bodyitem.css">
+    <link rel="stylesheet" href="./css/analytics/index.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>jungtong pj</title>
     <style type="text/css">
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <div id="in_screen">
+    <div id="A_in_screen">
 
         <div id="mysidenav" class="mysidenav">
             <a href="#" class="closebtn" onclick='closeNav()'>X</a>
@@ -32,6 +32,7 @@
             <a class="route" href="/add">단어 추가하기</a>
             <a class="route" href="/remember">단어 외우기</a>
             <a href="">통계</a>
+            <a href="">팀</a> 
         </div>
 
         <nav>
@@ -45,41 +46,23 @@
                 </span>
             </div>
         </nav> 
-
-        <h1 class="title"> Tango에 오신 것을 환영합니다! </h1>
-
-        <p class="main_text">
-            Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
-            단어를 등록해, 효율적으로 외워보세요!
-        </p>
-
-        <div id="H_bodyMenu">
-            <div class="route H_bodyItem" href="/add">
-                <span class="material-icons">
-                    add
-                </span>
-                단어 추가
-            </div>
-            <div class="route H_bodyItem" href="/remember">
-                <span class="material-icons">
-                    import_contacts
-                </span>
-                단어 외우기
-            </div>
-            <div class="route H_bodyItem" href="/analytics">
-                <span class="material-icons">
-                    insights
-                </span>
-                통계
-            </div>
-            <div class="route H_bodyItem" href="/confignote">
-                <span class="material-icons">
-                    settings
-                </span>
-                단어 설정
-            </div>
+        <h2 id="A_totalRight"></h2>
+        <h2 id="A_totalWrong"></h2>
+        <div id="A_recentList">
+            <span class="material-icons">
+                history
+            </span>
+            과거 기록
+            <!-- <div id="A_bodyMenu">
+                <div class="A_bodyItem">
+                    <span>응애노트</span>
+                    <div>
+                        틀린단어: aa:응애, ab: 응우옌
+                    </div>
+                </div>
+            </div> -->
         </div>
-    </div>
+        </div>
     <script src="./js/html/sidenav.js"></script>
 </body>
 </html>

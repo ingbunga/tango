@@ -29,7 +29,9 @@ export default class Router{
     constructor(){
         this.push(location.hash.slice(2, location.hash.length))
         window.onhashchange = () => {
-            this.push(location.hash.slice(2, location.hash.length))
+            if(location.hash.slice(2, location.hash.length) !== this.nowUrl){
+                this.push(location.hash.slice(2, location.hash.length))
+            }
         }
     }
     refrash(){
