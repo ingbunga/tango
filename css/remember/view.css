@@ -1,11 +1,11 @@
-#meanList{
+#View_meanList{
     display: flex;
     justify-content: center;
     
     flex-wrap: wrap;
 }
 
-.mean{
+.View_mean{
     width: 400px;
     display: flex;
 
@@ -20,17 +20,17 @@
     transition: all 500ms;
 }
 
-.mean:hover{
+.View_mean:hover{
     cursor: pointer;
 
     background-color: #dbdbdb;
 }
 
-.mean > span{
+.View_mean > span{
     font-size: 40px;
     margin-right: 20px;
 }
 
-.meanRight > h2{
+.View_meanRight > h2{
     margin: 0px
 }

@@ -16,7 +16,7 @@ function randInt(min, max){
 
 export default function(router){
     const title = document.getElementsByClassName('title')[0];
-    const meanListDom = document.getElementById('meanList');
+    const meanListDom = document.getElementById('View_meanList');
     let wordList = [];
     let meanList = [];
     let word;
@@ -43,11 +43,11 @@ export default function(router){
         mean = '단어'
     }){
         return`
-        <div class="mean">
+        <div class="View_mean">
             <span class="material-icons">
                 description
             </span>
-            <div class="meanRight">
+            <div class="View_meanRight">
                 <h2>${mean}</h2>
             </div>
         </div>
@@ -71,7 +71,7 @@ export default function(router){
                 mean: selectList[i]
             })
         }
-        document.querySelectorAll('.meanRight > h2').forEach((value)=>{
+        document.querySelectorAll('.View_meanRight > h2').forEach((value)=>{
             value.parentElement.parentElement.onclick = () => {
                 answer(value.innerHTML);
             }

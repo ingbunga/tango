@@ -17,7 +17,7 @@ const EZ = new EZstorage();
 
     router.on({
         url: '',
-        html: await LoadHtml('/index.html'),
+        html: await LoadHtml('/home.html'),
         exact: true,
     })
 

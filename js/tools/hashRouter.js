@@ -52,6 +52,9 @@ export default class Router{
 
         let routed = false;
         let domChanged = false;
+
+        let willRun = [];
+
         const temp = this.nowUrl;
         this.nowUrl = this.nowUrl.split('?')[0]
         for(let i in this.#urlMap){
@@ -62,7 +65,6 @@ export default class Router{
             ){
                 const routeinfo = this.#urlMap[i];
                 if(routeinfo.exact && i !== this.nowUrl) continue;
-                
                 if(routeinfo.html !== null && this.#rootDom){
                     if(!domChanged){
                         this.#rootDom.innerHTML = '';

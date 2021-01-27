@@ -23,11 +23,15 @@ export default function(EZ){
         stTime = EZ.storage.Timer.stTime;
         endTime = EZ.storage.Timer.endTime;
     }
-
+    
+    console.debug(
+        EZ.storage.Timer.stTime,
+        EZ.storage.Timer.endTime,
+        EZ.storage.Timer.run
+    )
     startBtn.addEventListener('click', function () {
         // RECORD
         if (this.innerText == 'RECORD' && milisec) {
-            console.log(min, sec, milisec)
             var li = document.createElement('li')
             li.style.color = "#fff"
             li.innerText = min + ' : ' + sec + ' : ' + milisec
@@ -39,31 +43,34 @@ export default function(EZ){
             return false
         }
         this.innerText = 'RECORD'
-        console.error('1')
-        console.error(Date.now());
         if (!stTime) {
             stTime = new Date().getTime() // 최초 START
-            console.warn(stTime);
             EZ.storage.Timer.stTime = stTime;
         } else {
-            console.log(stTime)
             stopBtn.innerText = 'STOP'
             if(alreadyRun || EZ.storage.Timer.run === false){
                 stTime += (Date.now() - endTime) // RESTART
             }
-            console.warn(stTime);
             EZ.storage.Timer.stTime = stTime;
         }
         if(!alreadyRun){
             timerStart = setInterval(function () {
                 var nowTime = new Date(Date.now() - stTime)
-                min = addZero(nowTime.getMinutes())
-                sec = addZero(nowTime.getSeconds())
-                milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
-                document.getElementById('postTestMin').innerText = min
-                document.getElementById('postTestSec').innerText = sec
-                document.getElementById('postTestMilisec').innerText = milisec
-            }, 1)
+                console.debug(nowTime);
+                min = addZero(Math.floor(nowTime / (1000 * 60 * 60)));
+                sec = addZero(Math.floor(nowTime / (1000 * 60))% 60);
+                milisec = addZero(Math.floor(nowTime / 1000)% 60);
+                if(document.getElementById('postTestMin') !== null){
+                    document.getElementById('postTestMin').innerText = min
+                    document.getElementById('postTestSec').innerText = sec
+                    document.getElementById('postTestMilisec').innerText = milisec
+                }
+                else{
+                    clearInterval(timerStart);
+                    EZ.storage.Timer.run = false;
+                    alreadyRun = false;
+                }
+            }, 1000)
             alreadyRun = true;
         }
         EZ.storage.Timer.run = true;
@@ -101,17 +108,17 @@ export default function(EZ){
         return (num < 10 ? '0' + num : '' + num)
     }
 
-    console.error(EZ.storage.Timer.stTime);
     if(EZ.storage.Timer.stTime !== 0 && EZ.storage.Timer.run){
+        var nowTime = Date.now() - stTime;
         startBtn.click();
     }
     else{
         var nowTime = new Date(endTime - stTime)
-        min = addZero(nowTime.getMinutes())
-        sec = addZero(nowTime.getSeconds())
-        milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
-        document.getElementById('postTestMin').innerText = min
-        document.getElementById('postTestSec').innerText = sec
-        document.getElementById('postTestMilisec').innerText = milisec
     }
+    min = addZero(Math.floor(nowTime / (1000 * 60 * 60)));
+    sec = addZero(Math.floor(nowTime / (1000 * 60))% 60);
+    milisec = addZero(Math.floor(nowTime / 1000)% 60);
+    document.getElementById('postTestMin').innerText = min
+    document.getElementById('postTestSec').innerText = sec
+    document.getElementById('postTestMilisec').innerText = milisec
 }
