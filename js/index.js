@@ -9,6 +9,7 @@ import afterR_VInstall from './html/remember/view.js';
 import afterTInstall from './html/timer/index.js';
 import afterAInstall from './html/add.js';
 import afterCFGInstall from './html/confignote/index.js';
+import afterANTInstall from './html/analytics/index.js';
 
 export const router = new Router();
 const EZ = new EZstorage();
@@ -65,6 +66,12 @@ const EZ = new EZstorage();
         html: await LoadHtml('/confignote.html'),
     })
 
+    router.on({
+        url: '/analytics',
+        func: ()=>{afterANTInstall(router)},
+        html: await LoadHtml('/analytics.html'),
+    })
+
     router.setRootDom(document.getElementById('screen'))
     router.bindHtml('route');
     router.refrash();
@@ -76,6 +83,12 @@ const EZ = new EZstorage();
     // console.log(EZ.storage);
     if(EZ.storage.noteList === undefined){
         EZ.storage.noteList = [];
+        EZ.storage.analytics = {
+            totalRight: 0,
+            totalWrong: 0,
+            totalTimer: 0,
+            recent: [],
+        }
     }
 
     console.log(EZ.storage);

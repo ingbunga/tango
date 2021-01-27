@@ -33,14 +33,22 @@ export default function(router){
 
     const EZ = new EZstorage();
     const query = QueryParser();
-    
+    const $ = EZ.storage;
     const save = EZ.storage.noteList[parseInt(query.id)];
-    // {
-    //     name: '일본여성케이크',
-    //     detail: '스시녀 사랑한다',
-    //     wordList: ['sex', 'jerkoff'],
-    //     meanList: ['성행위하다', '자위하다']
-    // }
+    
+    $.analytics.recent.unshift({
+        noteName: save.name,
+        time: Date.now(),
+        wrong:{
+            word: [],
+            mean: []
+        },
+        right:{
+            word: [],
+            mean: []
+        }
+    })
+    const analyticsMe = $.analytics.recent[0];
 
     function init(){
         wrongCnt = 0;
@@ -95,16 +103,23 @@ export default function(router){
         else{
             wrong();
         }
+        console.log(EZ.storage.analytics)
     }
 
     function right(){
         correctCnt++;
+        $.analytics.totalRight++;
+        analyticsMe.right.word.push(word);
+        analyticsMe.right.mean.push(mean);
         alert('맞았습니다!');
         setQuestion();
     }
     
     function wrong(){
         wrongCnt++;
+        $.analytics.totalWrong++;
+        analyticsMe.wrong.word.push(word);
+        analyticsMe.wrong.mean.push(mean);
         alert(`틀렸습니다. 정답은 ${mean}`);
         setQuestion();
     }
