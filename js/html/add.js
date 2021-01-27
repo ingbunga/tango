@@ -10,9 +10,6 @@ export default function(router){
 
     const init_add = voca_add.children[2];
     const init_rm = voca_add.children[3];
-    console.debug(init_add);
-    console.debug(init_rm);
-    console.debug(voca_add.children);
     init_add.addEventListener('click', add);
     init_rm.addEventListener('click', remove);
 
@@ -71,18 +68,10 @@ export default function(router){
         })
     }
 
-    EZ.onChange(()=>{
-        console.debug(EZ.storage.noteList);
-    })
-
-
     function voca_text(){
         const vocaDoms = document.getElementsByClassName('voca');
         for(let i = 0; i < vocaDoms.length; i++){
             vocat.push(vocaDoms[i].value);
-        }
-        for(let i = 0; i < vocaDoms.length; i++){
-            console.debug(vocat[i]);
         }
     }
 
@@ -90,9 +79,6 @@ export default function(router){
         const meanDoms = document.getElementsByClassName('mean');
         for(let i = 0; i < meanDoms.length; i++){
             meant.push(meanDoms[i].value);
-        }
-        for(let i = 0; i < meanDoms.length; i++){
-            console.debug(meant[i]);
         }
     }
 

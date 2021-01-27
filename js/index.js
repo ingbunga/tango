@@ -91,5 +91,5 @@ const EZ = new EZstorage();
         }
     }
 
-    console.log(EZ.storage);
+    // console.log(EZ.storage);
 })()

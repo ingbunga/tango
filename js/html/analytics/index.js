@@ -32,7 +32,6 @@ export default function (router){
     const EZ = new EZstorage();
 
     const $ = EZ.storage;
-    console.log($.analytics.recent);
 
     // 총 맞은개수
     totalRight.innerHTML = `총 맞은 개수: ${$.analytics.totalRight}`;

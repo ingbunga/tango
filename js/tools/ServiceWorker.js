@@ -1,10 +1,14 @@
 console.log('Loaded service worker!');
 let alerter = null
 
+
+
 function createAlerter(){
-    self.registration.showNotification('Tango',{
-        body: '어어? 밀지마라...',
-    })
+    alerter = setInterval(()=>{
+        self.registration.showNotification('Tango',{
+            body: '저랑 단어공부해요~~',
+        })
+    },1000 * 60 * 60 * 24)
 }
 
 function killAlerter(){

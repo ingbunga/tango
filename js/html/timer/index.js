@@ -17,10 +17,6 @@ export default function(){
     const stopBtn = document.getElementById('testStopBtn')
     const recordList = document.getElementById('testRecordList')
 
-    EZ.onChange(()=>{
-        console.debug(EZ.storage.Timer)
-    })
-
     if(EZ.storage.Timer === undefined){
         EZ.storage.Timer = {
             stTime: 0,
@@ -33,11 +29,6 @@ export default function(){
         endTime = EZ.storage.Timer.endTime;
     }
     
-    console.debug(
-        EZ.storage.Timer.stTime,
-        EZ.storage.Timer.endTime,
-        EZ.storage.Timer.run
-    )
     startBtn.addEventListener('click', function () {
         // RECORD
         if (this.innerText == 'RECORD' && milisec) {
@@ -64,7 +55,6 @@ export default function(){
         if(!alreadyRun){
             timerStart = setInterval(function () {
                 var nowTime = new Date(Date.now() - stTime)
-                console.debug(nowTime.getTime());
                 min = addZero(Math.floor(nowTime / (1000 * 60 * 60)));
                 sec = addZero(Math.floor(nowTime / (1000 * 60))% 60);
                 milisec = addZero(Math.floor(nowTime / 1000)% 60);
@@ -113,11 +103,9 @@ export default function(){
 
     var nowTime = Date.now() - stTime;
     if(EZ.storage.Timer.stTime !== 0 && EZ.storage.Timer.run){
-        console.debug('you are runing')
         startBtn.click();
     }
     else if(!EZ.storage.Timer.run && EZ.storage.Timer.stTime !== 0){
-        console.debug('you may stoped')
         nowTime = (endTime - stTime)
     }
     else{
