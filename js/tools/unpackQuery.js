@@ -4,7 +4,8 @@ import unpack from '이 파일';
 
 unpack(location.href);
 */
-export default function(url){
+export default function(){
+    const url = location.href;
     const out = {};
     const query = url.split('?')[1];
     const queryList = query.split(';');

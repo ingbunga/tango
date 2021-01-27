@@ -32,7 +32,7 @@ export default function(router){
     let wrongCnt = 0;
 
     const EZ = new EZstorage();
-    const query = QueryParser(location.href);
+    const query = QueryParser();
     
     const save = EZ.storage.noteList[parseInt(query.id)];
     // {

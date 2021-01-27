@@ -1,5 +1,6 @@
 export default function(EZ){
     const voca_form = document.getElementById('form');
+    const file = document.getElementById('A_file');
 
     const voca_add = document.querySelector('.voca_add');
 
@@ -85,4 +86,22 @@ export default function(EZ){
             console.debug(meant[i]);
         }
     }
+
+    // --------------< 파일 불러오기 >---------------
+
+    file.onchange = (event) => {
+        processFile(event.target.files[0]);
+    }
+
+    function processFile(file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            fileSave(reader.result);
+        };
+        reader.readAsText(file, "utf-8");
+    }
+    function fileSave(json){
+        EZ.storage.noteList.push(JSON.parse(json));
+    }
+    
 }
