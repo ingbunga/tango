@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/sidenav.css">
     <link rel="stylesheet" href="./css/timer.css">
+    <link rel="stylesheet" href="./css/home/bodyitem.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>jungtong pj</title>
     <style type="text/css">
@@ -46,9 +47,36 @@
         </nav> 
 
         <h1 class="title"> Tango에 오신 것을 환영합니다! </h1>
-        <p class="main_text">Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
+        <p class="main_text">
+            Tango는 단어를 쉽게 외울 수 있는 웹사이트입니다!
             단어를 등록해, 효율적으로 외워보세요!
         </p>
+        <div id="H_bodyMenu">
+            <div class="route H_bodyItem" href="/add">
+                <span class="material-icons">
+                    add
+                </span>
+                단어 추가
+            </div>
+            <div class="route H_bodyItem" href="/remember">
+                <span class="material-icons">
+                    import_contacts
+                </span>
+                단어 외우기
+            </div>
+            <div class="route H_bodyItem" href="">
+                <span class="material-icons">
+                    insights
+                </span>
+                통계
+            </div>
+            <div class="route H_bodyItem" href="/confignote">
+                <span class="material-icons">
+                    settings
+                </span>
+                단어 설정
+            </div>
+        </div>
     </div>
     <script src="./js/html/sidenav.js"></script>
 </body>
