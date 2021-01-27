@@ -16,9 +16,6 @@ export default class EZstorage{
                 obj[prop] = value;
                 this.#save(obj);
                 return true;
-            },
-            deleteProperty(target, prop) {
-                delete target[prop];
             }
         }
         if(localStorage['EZ']){

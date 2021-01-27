@@ -100,8 +100,10 @@ export default function(EZ){
         };
         reader.readAsText(file, "utf-8");
     }
+    
     function fileSave(json){
         EZ.storage.noteList.push(JSON.parse(json));
+        alert('complete')
     }
     
 }

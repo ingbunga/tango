@@ -8,6 +8,7 @@ import afterRInstall from './html/remember/index.js';
 import afterR_VInstall from './html/remember/view.js';
 import afterTInstall from './html/timer/index.js';
 import afterAInstall from './html/add.js';
+import afterCFGInstall from './html/confignote/index.js';
 
 export const router = new Router();
 const EZ = new EZstorage();
@@ -56,6 +57,12 @@ const EZ = new EZstorage();
         url: '/timer',
         func: ()=>{afterTInstall(EZ)},
         html: await LoadHtml('/timer.html'),
+    })
+
+    router.on({
+        url: '/confignote',
+        func: ()=>{afterCFGInstall(router)},
+        html: await LoadHtml('/confignote.html'),
     })
 
     router.setRootDom(document.getElementById('screen'))
