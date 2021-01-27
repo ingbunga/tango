@@ -1,0 +1,32 @@
+
+#H_bodyMenu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.H_bodyItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 500px;
+    padding: 100px;
+    border: 1px solid;
+    border-radius: 7px;
+    margin: 10px;
+
+    font-size: 50px;
+    font-weight: 100;
+
+    transition: all 500ms;
+}
+
+.H_bodyItem > span{
+    font-size: 100px;
+}
+
+.H_bodyItem:hover{
+    cursor: pointer;
+    background-color: #dbdbdb;
+}
