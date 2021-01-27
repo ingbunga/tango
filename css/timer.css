@@ -86,3 +86,9 @@
     border-color: red;
     color: red;
 }
+#testStartBtn{
+    outline: none;
+}
+#testStopBtn{
+    outline: none;
+}

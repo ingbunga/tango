@@ -20,6 +20,7 @@ export default function(){
     voca_form.onsubmit = submit;
 
     function submit(event){
+        event.preventDefault();
         alert("테스트!");
         voca_text();
         mean_text();

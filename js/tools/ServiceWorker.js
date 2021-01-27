@@ -1,4 +1,10 @@
 console.log('Loaded service worker!');
+let alerter = null
+
+function createAlerter(){
+    self.print('ok');
+    console.warn(1231)
+}
 
 self.addEventListener('install', event => {
     self.registration.showNotification('Tango',{
@@ -14,6 +20,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
+    createAlerter();
     self.registration.showNotification('Tango',{
         body: '돌아오신걸 환영합니다.',
     })
