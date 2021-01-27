@@ -33,16 +33,6 @@ nav > span:hover{
     cursor: pointer;
 }
 
-.footer {
-    width:100%;
-    height:40px;
-    position:absolute;
-    bottom:0;
-    background:#5eaeff;
-   text-align: center;
-   color: white;
- }
-
 .icon{
     font-size: 3em;
     color: white;
@@ -55,8 +45,7 @@ nav > span:hover{
 }
 
 input{
-    width: 24%;
-    height: 1.5%;
+    margin-left: 4%;
 }
 
 .logo{

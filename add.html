@@ -47,23 +47,24 @@
         </nav> 
 
         <!-- add 부분 -->
+        <form class="voca_form" id="form"></form>
         <h1>새로운 단어장 만들기</h1>
-        <form class="voca_form" id="form">
-            <input type="file" id="A_file"><br>
-            <span class="file_text">파일로 가져오기...</span><br><br>
+            <button type="submit" class= "make">+</button>
+            <span class="file_text">파일로 가져오기...</span><br>
+            <input id="file" type="file" id=" A_file"><br><br>
             <input type="text" name="title" id="title" placeholder="제목" required><br><br>
             <input type="text" name="detail" id="detail" placeholder="설명" required>
-            <button class= "make" type="submit">만들기</button><br><br><br>
+            <br><br><br>
             <div class="voca_add">
                 <input type="text" name="voca" class="voca" placeholder="단어" required>
                 <input type="text" name="mean" class="mean" placeholder="뜻" required>
-                <input type="button" value="추가하기" class="voca_input">
-                <input type="button" value="제거하기">
+                <input type="button" value="추가하기" onclick="add()" id="voca_input">
+                <input type="button" value="제거하기" onclick="remove()"id="voca_input">
             </div>
         </form> 
     </div>
 
-    <script type="module" src="./js/html/sidenav.js"></script>
+    <script src="./js/html/sidenav.js"></script>
    
 </body>
 </html>

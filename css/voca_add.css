@@ -1,28 +1,68 @@
-input{
+h1{ 
     margin-left: 4%;
 }
 
-h1{
-    margin-left: 4%;
-}
-
-.voca_add{ 
-    display: inline-flex;
+.voca_add{ /* div 박스 */
+    display: inline-block;
+    height: 3%;
+    width: 40%;
     border:1px solid;
     margin-left: 4%;
 }
 
-.voca_input{
-    all: none;
+.voca_add:hover{
+    background: aliceblue;
 }
 
-.make{
-    width: 4%;
-    height: 3%;
-    margin-left: 4%;
-}
+
+.make {
+    float: right;
+    margin-right: 60%;
+    margin-bottom: 5%;
+    height: 50px;
+    line-height: 47px;  
+    width: 50px; 
+    font-size: 2em; 
+    border-radius: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    all: none;
+  }
 
 .file_text{
     margin-left: 4%
 }
 
+#file{
+    all:none;
+}
+
+#title{
+    height: 3%;
+    width: 30%;
+}
+
+#detail{
+    height: 3%;
+    width: 30%;
+}
+
+#title:hover{
+    background-color: aliceblue;
+    outline: none;
+}
+
+#title:focus{
+    outline:none;
+}
+
+#detail:hover{
+    background-color: aliceblue;
+    outline: none;
+}
+
+#detail:focus{
+    outline:none;
+}

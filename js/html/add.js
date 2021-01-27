@@ -17,7 +17,6 @@ export default function(EZ){
 
     function submit(event){
         alert("테스트!");
-        event.preventDefault();
         voca_text();
         mean_text();
         save();
