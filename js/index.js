@@ -35,7 +35,7 @@ const EZ = new EZstorage();
 
     router.on({
         url: '/add',
-        func: () => {afterAInstall()},
+        func: () => {afterAInstall(router)},
         html: await LoadHtml('/add.html'),
         exact: true
     })

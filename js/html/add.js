@@ -1,6 +1,6 @@
 import EZstorage from '../tools/EasyStorage.js';
 
-export default function(){
+export default function(router){
     const EZ = new EZstorage();
     
     const voca_form = document.getElementById('form');
@@ -25,6 +25,7 @@ export default function(){
         voca_text();
         mean_text();
         save();
+        router.push('/confignote');
     }
 
     // 저장용 변수
@@ -111,7 +112,7 @@ export default function(){
     
     function fileSave(json){
         EZ.storage.noteList.push(JSON.parse(json));
-        alert('complete')
+        router.push('/confignote');
     }
     
 }

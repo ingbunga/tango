@@ -25,7 +25,7 @@ function run(){
         window.addEventListener('beforeunload', () => {
             sw.active.postMessage('die')
         })
-        sw.active.postMessage('hello')
+        sw.active.postMessage('helloo')
     })
 
     navigator.serviceWorker.addEventListener('message', event => {

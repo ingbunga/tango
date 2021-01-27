@@ -2,8 +2,15 @@ console.log('Loaded service worker!');
 let alerter = null
 
 function createAlerter(){
-    self.print('ok');
-    console.warn(1231)
+    self.registration.showNotification('Tango',{
+        body: '어어? 밀지마라...',
+    })
+}
+
+function killAlerter(){
+    if(alerter !== null){
+        clearInterval(alerter);
+    }
 }
 
 self.addEventListener('install', event => {
@@ -20,8 +27,18 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
-    createAlerter();
-    self.registration.showNotification('Tango',{
-        body: '돌아오신걸 환영합니다.',
-    })
+    if(event.data === 'die'){
+        createAlerter();   
+    }
+    else if(event.data === 'hello'){
+        self.registration.showNotification('Tango',{
+            body: '돌아오신것을 환영합니다.',
+        });
+        killAlerter();
+    }
+    else{
+        self.registration.showNotification('Tango',{
+            body: event.data,
+        })
+    }
 })
