@@ -14,11 +14,17 @@ export default function swcontrol() {
             }
         });
     }
+    document.addEventListener("visibilitychange", function() {
+        console.log(document.hidden);
+    });
 }
 
 function run(){
     navigator.serviceWorker.register('/js/tools/ServiceWorker.js')
     .then(sw => {
+        window.addEventListener('beforeunload', () => {
+            sw.active.postMessage('die')
+        })
         sw.active.postMessage('hello')
     })
 
