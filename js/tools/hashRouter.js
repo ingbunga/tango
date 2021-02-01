@@ -14,7 +14,8 @@ export default class Router{
     #nowUrlArray = [''];  // 현재 url ( 리스트 형식으로 )
     #rootDom = null;    // 루트 dom
     #notFoundFunc = null;   // 404 함수
-    
+    // #isGithub = true;
+    #isGithub = location.href.includes('github.com');
     #urlMap = {
         /*
             [url: string] : {
