@@ -20,6 +20,8 @@ export default function swcontrol() {
 }
 
 function run(){
+    location.href.includes('github.io') ?
+    navigator.serviceWorker.register('/tango/js/tools/ServiceWorker.js') :
     navigator.serviceWorker.register('/js/tools/ServiceWorker.js')
     .then(sw => {
         window.addEventListener('beforeunload', () => {
