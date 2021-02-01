@@ -1,5 +1,5 @@
 // const isGithub = true;
-const isGithub = location.href.includes('github.com');
+const isGithub = location.href.includes('github.io');
 
 export default async function LoadHtml(url){
     let res;
